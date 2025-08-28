@@ -1,9 +1,16 @@
+import 'package:clot_shopping/password_input.dart';
+import 'package:clot_shopping/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class SigninScreen extends StatelessWidget {
+class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
 
+  @override
+  State<SigninScreen> createState() => _SigninScreenState();
+}
+
+class _SigninScreenState extends State<SigninScreen> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
@@ -40,7 +47,14 @@ class SigninScreen extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const PasswordInput(),
+                        ),
+                      );
+                    },
                     style: TextButton.styleFrom(
                       backgroundColor: theme.primaryColor,
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -58,7 +72,14 @@ class SigninScreen extends StatelessWidget {
                   children: [
                     const Text("Don't have an account?"),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const SignupScreen(),
+                          ),
+                        );
+                      },
                       child: Text(
                         " Sign up",
                         style: TextStyle(
@@ -80,18 +101,21 @@ class SigninScreen extends StatelessWidget {
                   context,
                   icon: Icons.apple,
                   label: "Sign in with Apple",
+                  onPress: () {},
                 ),
                 const SizedBox(height: 16), // decreased gap
                 _buildSocialButton(
                   context,
                   icon: Icons.facebook,
                   label: "Sign in with Facebook",
+                  onPress: () {},
                 ),
                 const SizedBox(height: 16), // decreased gap
                 _buildSocialButton(
                   context,
                   icon: FontAwesomeIcons.google,
                   label: "Sign in with Facebook",
+                  onPress: () {},
                 ),
               ],
             ),
@@ -105,13 +129,16 @@ class SigninScreen extends StatelessWidget {
     BuildContext context, {
     required IconData icon,
     required String label,
+    required Function onPress,
   }) {
     final theme = Theme.of(context);
 
     return SizedBox(
       height: 56, // larger button height
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          onPress();
+        },
         style: ElevatedButton.styleFrom(
           backgroundColor: theme.secondaryHeaderColor,
           foregroundColor: theme.primaryColor,
