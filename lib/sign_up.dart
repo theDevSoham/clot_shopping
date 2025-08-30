@@ -1,4 +1,5 @@
 import 'package:clot_shopping/forgot_password.dart';
+import 'package:clot_shopping/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -112,6 +113,12 @@ class _SignupScreenState extends State<SignupScreen> {
                 child: TextButton(
                   onPressed: () {
                     // Handle account creation
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const OnboardingScreen(),
+                      ),
+                    );
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.deepPurpleAccent,

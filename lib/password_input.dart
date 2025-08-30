@@ -23,6 +23,24 @@ class _PasswordInputState extends State<PasswordInput> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.arrow_back, color: theme.primaryColor),
+                  const SizedBox(width: 6),
+                  Text(
+                    "Back",
+                    style: TextStyle(
+                      color: theme.primaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
             // Title
             Text("Enter Password", style: theme.textTheme.headlineLarge),
             const SizedBox(height: 20),
