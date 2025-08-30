@@ -1,5 +1,6 @@
 import 'package:clot_shopping/home_Screen.dart';
 import 'package:clot_shopping/notification_screen.dart';
+import 'package:clot_shopping/order_screen.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavParent extends StatefulWidget {
@@ -29,7 +30,7 @@ class _RootAppState extends State<RootApp> {
   final List<Widget> _screens = [
     const HomeScreen(),
     const NotificationsScreen(),
-    Center(child: Text("Orders screen coming soon...")), // Placeholder
+    const OrdersScreen(),
     Center(child: Text("Profile screen coming soon...")), // Placeholder
   ];
 

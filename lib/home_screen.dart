@@ -1,4 +1,5 @@
 import 'package:clot_shopping/categories_screen.dart';
+import 'package:clot_shopping/product_details.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -191,42 +192,58 @@ class _HomeScreenState extends State<HomeScreen> {
                   separatorBuilder: (_, __) => const SizedBox(width: 12),
                   itemBuilder: (context, index) {
                     final product = _topSelling[index];
-                    return Container(
-                      width: 160,
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: theme.secondaryHeaderColor,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Image.asset(
-                              product["image"],
-                              fit: BoxFit.cover,
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => ProductDetailsScreen(
+                              title: product["title"],
+                              price: product["price"],
+                              images: [product["image"]],
                             ),
                           ),
-                          const SizedBox(height: 8),
-                          Text(
-                            product["title"],
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            "\$${product["price"].toStringAsFixed(2)}",
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          if (product.containsKey("oldPrice"))
-                            Text(
-                              "\$${product["oldPrice"].toStringAsFixed(2)}",
-                              style: const TextStyle(
-                                decoration: TextDecoration.lineThrough,
-                                color: Colors.grey,
+                        );
+                      },
+                      child: Container(
+                        width: 160,
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: theme.secondaryHeaderColor,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Image.asset(
+                                product["image"],
+                                fit: BoxFit.cover,
                               ),
                             ),
-                        ],
+                            const SizedBox(height: 8),
+                            Text(
+                              product["title"],
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              "\$${product["price"].toStringAsFixed(2)}",
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            if (product.containsKey("oldPrice"))
+                              Text(
+                                "\$${product["oldPrice"].toStringAsFixed(2)}",
+                                style: const TextStyle(
+                                  decoration: TextDecoration.lineThrough,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                          ],
+                        ),
                       ),
                     );
                   },
